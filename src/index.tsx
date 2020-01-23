@@ -1,15 +1,13 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './i18n';
+import './common/translate/i18n';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-
-const AppComponent = React.lazy(() => import('./App'))
-
+import App from './components/App'
 
 ReactDOM.render(
   <Suspense fallback="{<div>Loading</div>}">
-    <AppComponent />
+    <App />
   </Suspense>, document.getElementById('root')
 );
 
