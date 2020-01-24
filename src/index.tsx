@@ -8,7 +8,8 @@ import App from './components/App'
 ReactDOM.render(
   <Suspense fallback="{<div>Loading</div>}">
     <App />
-  </Suspense>, document.getElementById('root')
+  </Suspense>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
