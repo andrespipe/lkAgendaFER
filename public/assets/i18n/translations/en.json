@@ -1,6 +1,9 @@
 {
-  "locations" : "Locations",
-  "NavBar" : {
-
-  }
+  "NavBar.title" : "Lazy Kitten - Agenda",
+  "NavBar.agenda" : "Agenda",
+  "NavBar.activities" : "Activities",
+  "NavBar.locations" : "Locations",
+  "NavBar.login" : "Login",
+  "NavBar.staff" : "Staff",
+  "NavBar.reports" : "Reports"
 }

@@ -5,9 +5,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
+import NearMeIcon from '@material-ui/icons/NearMe';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import VibrationIcon from '@material-ui/icons/Vibration';
 import MenuIcon from '@material-ui/icons/Menu';
-import Drawer from '@material-ui/core/Drawer';
 import { useTranslation } from 'react-i18next';
+import { List, ListItem, ListItemIcon, ListItemText, Divider, SwipeableDrawer } from '@material-ui/core';
+import { INavList } from './nav-bar.model';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,31 +26,112 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    list: {
+      width: 250,
+    },
+    fullList: {
+      width: 'auto',
+    },
   }),
 );
 
 const NavBar: React.FC = () => {
 
   const { t, i18n } = useTranslation();
-
   const classes = useStyles();
+  const [state, setState] = React.useState({
+    left: false,
+  });
+
+  const mainNavList: INavList[] = [
+    {
+      label: 'NavBar.agenda',
+      icon: <DateRangeIcon />
+    },
+    {
+      label: 'NavBar.activities',
+      icon: <VibrationIcon />
+    },
+    {
+      label: 'NavBar.locations',
+      icon: <NearMeIcon />
+    },
+    {
+      label: 'NavBar.staff',
+      icon: <PersonPinIcon />
+    },
+    {
+      label: 'NavBar.reports',
+      icon: <EqualizerIcon />
+    },
+  ];
+
+  const subNavList:INavList[] = [];
+
+  const toggleDrawer = (open: boolean) => (
+    event: React.KeyboardEvent | React.MouseEvent,
+  ) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
+
+    setState({ ...state, left: open });
+  };
+
+  const listItems = (list: INavList[]) => (
+    <List>
+      {list.map((item) => (
+        <ListItem button key={item.label}>
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={t(item.label)} />
+        </ListItem>
+      ))}
+    </List>
+  );
+
+  const sideList = () => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      {listItems(mainNavList)}
+      <Divider />
+      {listItems(subNavList)}
+    </div>
+  );
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
+          <div onClick={toggleDrawer(true)}>
+            <IconButton 
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
+          </div>
+          <Typography variant="h6" className={classes.title}>{t('NavBar.title')}</Typography>
+          <Button color="inherit">{t('NavBar.login')}</Button>
         </Toolbar>
       </AppBar>
-      {/* <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-        {sideList('left')}
-      </Drawer> */}
+      <SwipeableDrawer
+        open={state.left}
+        onClose={toggleDrawer(false)}
+        onOpen={toggleDrawer(true)}
+      >
+        {sideList()}
+      </SwipeableDrawer>
     </div>
   );
 };
