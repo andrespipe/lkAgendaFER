@@ -1,4 +1,5 @@
 export interface INavList {
-  label: string;
   icon;
+  label: string;
+  path: string;
 }

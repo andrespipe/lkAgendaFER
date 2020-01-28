@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -45,24 +46,29 @@ const NavBar: React.FC = () => {
 
   const mainNavList: INavList[] = [
     {
+      icon: <DateRangeIcon />,
       label: 'NavBar.agenda',
-      icon: <DateRangeIcon />
+      path: '/Agenda',
     },
     {
+      icon: <VibrationIcon />,
       label: 'NavBar.activities',
-      icon: <VibrationIcon />
+      path: '/Activities',
     },
     {
+      icon: <NearMeIcon />,
       label: 'NavBar.locations',
-      icon: <NearMeIcon />
+      path: '/Locations',
     },
     {
+      icon: <PersonPinIcon />,
       label: 'NavBar.staff',
-      icon: <PersonPinIcon />
+      path: '/Staff',
     },
     {
+      icon: <EqualizerIcon />,
       label: 'NavBar.reports',
-      icon: <EqualizerIcon />
+      path: '/Reports',
     },
   ];
 
@@ -72,11 +78,12 @@ const NavBar: React.FC = () => {
     event: React.KeyboardEvent | React.MouseEvent,
   ) => {
     if (
-      event &&
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
+      event
+      && event.type === 'keydown'
+      && (
+        (event as React.KeyboardEvent).key === 'Tab'
+        || (event as React.KeyboardEvent).key === 'Shift'
+      )) {
       return;
     }
 
@@ -86,10 +93,12 @@ const NavBar: React.FC = () => {
   const listItems = (list: INavList[]) => (
     <List>
       {list.map((item) => (
-        <ListItem button key={item.label}>
-          <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={t(item.label)} />
-        </ListItem>
+        <NavLink to={item.path} >
+          <ListItem button key={item.label}>
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={t(item.label)} />
+          </ListItem>
+        </NavLink>
       ))}
     </List>
   );
