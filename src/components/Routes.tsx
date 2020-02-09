@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Home = React.lazy(() => import('./home/home'));
 const Activities = React.lazy(() => import('../modules/activities/activities'));
 const Agenda = React.lazy(() => import('../modules/agenda/agenda'));
+const Home = React.lazy(() => import('./home/home'));
 const Locations = React.lazy(() => import('../modules/locations/locations'));
-const Staff = React.lazy(() => import('../modules/staff/staff'));
 const Reports = React.lazy(() => import('../modules/reports/reports'));
+const Staff = React.lazy(() => import('../modules/staff/staff'));
+const Account = React.lazy(()=> import('../modules/account/account'));
 
 export type Route = {
   path: string;
@@ -14,6 +15,7 @@ export type Route = {
 
 const MAIN_ROUTES: Route[] =[
   { path: '/', component: Home },
+  { path: '/Account',component: Account },
   { path: '/Agenda', component: Agenda },
   { path: '/Activities', component: Activities },
   { path: '/Locations', component: Locations },

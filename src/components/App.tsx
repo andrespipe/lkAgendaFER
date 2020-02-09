@@ -26,7 +26,7 @@ const App: React.FC = () => {
           component={route.component}>
         </Route>
           :
-          <Route
+        <Route
           key={i}
           path={route.path}
           component={route.component}>

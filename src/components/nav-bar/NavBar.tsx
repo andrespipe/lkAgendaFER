@@ -92,9 +92,9 @@ const NavBar: React.FC = () => {
 
   const listItems = (list: INavList[]) => (
     <List>
-      {list.map((item) => (
-        <NavLink to={item.path} >
-          <ListItem button key={item.label}>
+      {list.map((item, index) => (
+        <NavLink to={item.path} key={index} >
+          <ListItem button>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={t(item.label)} />
           </ListItem>
@@ -131,7 +131,9 @@ const NavBar: React.FC = () => {
             </IconButton>
           </div>
           <Typography variant="h6" className={classes.title}>{t('NavBar.title')}</Typography>
-          <Button color="inherit">{t('NavBar.login')}</Button>
+          <NavLink to="/Account">
+            <Button color="inherit">{t('NavBar.login')}</Button>
+          </NavLink>
         </Toolbar>
       </AppBar>
       <SwipeableDrawer
