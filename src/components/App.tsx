@@ -7,7 +7,8 @@ import {
 import './App.css';
 import MAIN_ROUTES from './Routes';
 
-import NavBar from './nav-bar/NavBar';
+import NavBar from './nav-bar/nav-bar';
+import AuthDataProvider from '../providers/auth-data-provider';
 
 const App: React.FC = () => {
 
@@ -39,12 +40,14 @@ const App: React.FC = () => {
   return (
     <section>
       <Suspense fallback={<Loader></Loader>}>
-        <Router>
-          <NavBar></NavBar>
-          <section className="main-content">
-            <Routes></Routes>
-          </section>
-        </Router>
+          <Router>
+            <AuthDataProvider>
+              <NavBar></NavBar>
+              <section className="main-content">
+                <Routes></Routes>
+              </section>
+            </AuthDataProvider>
+          </Router>
       </Suspense>
     </section>
   );

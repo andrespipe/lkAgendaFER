@@ -13,8 +13,16 @@ import PersonPinIcon from '@material-ui/icons/PersonPin';
 import VibrationIcon from '@material-ui/icons/Vibration';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useTranslation } from 'react-i18next';
-import { List, ListItem, ListItemIcon, ListItemText, Divider, SwipeableDrawer } from '@material-ui/core';
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  SwipeableDrawer,
+} from '@material-ui/core';
 import { INavList } from './nav-bar.model';
+import { useAuthDataContext } from '../../providers/auth-data-provider';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -72,6 +80,25 @@ const NavBar: React.FC = () => {
     },
   ];
 
+  const dataContext = useAuthDataContext();
+
+  const logIn = () => {
+    if (dataContext.onLogin) {
+      dataContext.onLogin({
+        username: 'felipipe',
+        name: 'Andres',
+        lastName: 'Molina',
+      });
+    }
+  };
+
+  const logOut = () => {
+    if (dataContext.onLogout) {
+      dataContext.onLogout();
+    }
+  };
+  console.log(dataContext);
+  
   const subNavList:INavList[] = [];
 
   const toggleDrawer = (open: boolean) => (
@@ -103,7 +130,7 @@ const NavBar: React.FC = () => {
     </List>
   );
 
-  const sideList = () => (
+  const SideList = () => (
     <div
       className={classes.list}
       role="presentation"
@@ -130,6 +157,8 @@ const NavBar: React.FC = () => {
               <MenuIcon />
             </IconButton>
           </div>
+          <button onClick={logOut}>LogOut</button>
+          <button onClick={logIn}>LogIn</button>
           <Typography variant="h6" className={classes.title}>{t('NavBar.title')}</Typography>
           <NavLink to="/Account">
             <Button color="inherit">{t('NavBar.login')}</Button>
@@ -141,7 +170,7 @@ const NavBar: React.FC = () => {
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
       >
-        {sideList()}
+        <SideList></SideList>
       </SwipeableDrawer>
     </div>
   );
