@@ -1,21 +1,31 @@
 import React from 'react';
 import {
+  Redirect,
   Route,
   RouterComponentProps,
   Switch
 } from 'react-router-dom';
 
-import Login from './login/login'
+import Login from './login/login';
+import MyAccount from './my-account/my-account';
+import NoLoggedRoute from '../../common/custom-routes/no-logged-route';
+import PrivateRoute from '../../common/custom-routes/private-route';
 
 const Account: React.FC = ({ match }: RouterComponentProps)=> {
-  const AccountSub = () => (
-    <div>Account subcomponent</div>
-  );
 
   const Routes = () => (
     <Switch>
-      <Route path={`${match.path}/`} component={AccountSub}></Route>
-      <Route path={`${match.path}/Login`} component={Login}></Route>
+      <Redirect exact from={`${match.path}`} to={`${match.path}/MyAccount`}></Redirect>
+      <NoLoggedRoute
+        path={`${match.path}/Login`}
+        redirect={`${match.path}/MyAccount`}
+        component={Login}>
+      </NoLoggedRoute>
+      <PrivateRoute
+        path={`${match.path}/MyAccount`}
+        redirect={`${match.path}/Login`}
+        component={MyAccount}>
+      </PrivateRoute>
     </Switch>
   );
   

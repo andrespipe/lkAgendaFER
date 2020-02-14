@@ -22,7 +22,7 @@ import {
   SwipeableDrawer,
 } from '@material-ui/core';
 import { INavList } from './nav-bar.model';
-import { useAuthDataContext } from '../../providers/auth-data-provider';
+// import { useAuthDataContext } from '../../providers/auth-data-provider';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -80,24 +80,24 @@ const NavBar: React.FC = () => {
     },
   ];
 
-  const dataContext = useAuthDataContext();
+  // const dataContext = useAuthDataContext();
 
-  const logIn = () => {
-    if (dataContext.onLogin) {
-      dataContext.onLogin({
-        username: 'felipipe',
-        name: 'Andres',
-        lastName: 'Molina',
-      });
-    }
-  };
+  // const logIn = () => {
+  //   if (dataContext.onLogin) {
+  //     dataContext.onLogin({
+  //       username: 'felipipe',
+  //       name: 'Andres',
+  //       lastName: 'Molina',
+  //     });
+  //   }
+  // };
 
-  const logOut = () => {
-    if (dataContext.onLogout) {
-      dataContext.onLogout();
-    }
-  };
-  console.log(dataContext);
+  // const logOut = () => {
+  //   if (dataContext.onLogout) {
+  //     dataContext.onLogout();
+  //   }
+  // };
+  // console.log(dataContext);
   
   const subNavList:INavList[] = [];
 
@@ -157,8 +157,8 @@ const NavBar: React.FC = () => {
               <MenuIcon />
             </IconButton>
           </div>
-          <button onClick={logOut}>LogOut</button>
-          <button onClick={logIn}>LogIn</button>
+          {/* <button onClick={logOut}>LogOut</button>
+          <button onClick={logIn}>LogIn</button> */}
           <Typography variant="h6" className={classes.title}>{t('NavBar.title')}</Typography>
           <NavLink to="/Account">
             <Button color="inherit">{t('NavBar.login')}</Button>
