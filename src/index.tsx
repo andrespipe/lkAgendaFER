@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './common/translate/i18n';
-import './index.css';
+import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import App from './components/App'
 

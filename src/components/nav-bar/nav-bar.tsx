@@ -22,6 +22,7 @@ import {
   SwipeableDrawer,
 } from '@material-ui/core';
 import { INavList } from './nav-bar.model';
+import './nav-bar.scss';
 // import { useAuthDataContext } from '../../providers/auth-data-provider';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -120,7 +121,7 @@ const NavBar: React.FC = () => {
   const listItems = (list: INavList[]) => (
     <List>
       {list.map((item, index) => (
-        <NavLink to={item.path} key={index} >
+        <NavLink to={item.path} key={index} class="a-nostyle">
           <ListItem button>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={t(item.label)} />
@@ -160,7 +161,7 @@ const NavBar: React.FC = () => {
           {/* <button onClick={logOut}>LogOut</button>
           <button onClick={logIn}>LogIn</button> */}
           <Typography variant="h6" className={classes.title}>{t('NavBar.title')}</Typography>
-          <NavLink to="/Account">
+          <NavLink to="/Account" class="a-nostyle">
             <Button color="inherit">{t('NavBar.login')}</Button>
           </NavLink>
         </Toolbar>
