@@ -29,11 +29,7 @@ const Account: React.FC = ({ match }: RouterComponentProps)=> {
   );
   
   return (
-    <div>
-      Account Main panel
-      <hr/>
-      <Routes></Routes>
-    </div>
+    <Routes></Routes>
   );
 }
 

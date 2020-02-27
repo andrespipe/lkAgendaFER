@@ -153,8 +153,7 @@ const NavBar: React.FC = () => {
               edge="start"
               className={classes.menuButton}
               color="inherit"
-              aria-label="menu"
-            >
+              aria-label="menu">
               <MenuIcon />
             </IconButton>
           </div>

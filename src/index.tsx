@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './common/translate/i18n';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import App from './components/App'
+import App from './components/App';
 
 ReactDOM.render(
   <Suspense fallback="{<div>Loading</div>}">
