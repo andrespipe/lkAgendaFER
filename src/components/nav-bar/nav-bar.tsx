@@ -27,7 +27,7 @@ import './nav-bar.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    navRoot: {
       flexGrow: 1,
     },
     menuButton: {
@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+const linkStyle = {
+  color: 'inherit',
+  textDecoration: 'inherit',
+};
 
 const NavBar: React.FC = () => {
 
@@ -121,7 +126,7 @@ const NavBar: React.FC = () => {
   const listItems = (list: INavList[]) => (
     <List>
       {list.map((item, index) => (
-        <NavLink to={item.path} key={index} class="a-nostyle">
+        <NavLink to={item.path} key={index} style={linkStyle}>
           <ListItem button>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={t(item.label)} />
@@ -145,7 +150,7 @@ const NavBar: React.FC = () => {
   );
 
   return (
-    <div className={classes.root}>
+    <div className={classes.navRoot}>
       <AppBar position="static">
         <Toolbar>
           <div onClick={toggleDrawer(true)}>
@@ -160,7 +165,7 @@ const NavBar: React.FC = () => {
           {/* <button onClick={logOut}>LogOut</button>
           <button onClick={logIn}>LogIn</button> */}
           <Typography variant="h6" className={classes.title}>{t('NavBar.title')}</Typography>
-          <NavLink to="/Account" class="a-nostyle">
+          <NavLink to="/Account" style={linkStyle}>
             <Button color="inherit">{t('NavBar.login')}</Button>
           </NavLink>
         </Toolbar>

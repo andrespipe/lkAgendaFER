@@ -1,4 +1,6 @@
-.a-nostyle, .a-nostyle:visited, .a-nostyle:link{
-  text-decoration: inherit;
-  color: inherit;
+#root{
+  .a, .a:visited, .a:active, .a:link, .a-nostyle{
+    text-decoration: inherit;
+    color: #0f0;
+  }
 }
