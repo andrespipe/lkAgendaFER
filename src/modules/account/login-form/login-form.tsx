@@ -26,7 +26,7 @@ const LoginForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
     if (!values.user) {
       errors.user = 'Invalid user name';
     }
-    if (!values.user) {
+    if (!values.password) {
       errors.password = 'Invalid password';
     }
     return errors;
@@ -68,7 +68,6 @@ const LoginForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
             {t('NavBar.login')}
           </Button>
           <br/><br/>
-          {/* <pre>{JSON.stringify(values)}</pre> */}
         </Form>
       )}
     </Formik>
