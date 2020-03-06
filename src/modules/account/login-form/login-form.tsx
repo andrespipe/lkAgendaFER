@@ -45,25 +45,28 @@ const LoginForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
       }) => (
         <Form>
           <TextField
+            error={!!errors.user}
+            helperText={errors.user}
             label="User"
             name="user"
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.user}/>
-            {errors.user}
           <br/><br/>
           <TextField
+            error={!!errors.password}
+            helperText={errors.password}
             label="Password"
             name="password"
             onBlur={handleBlur}
             onChange={handleChange}
             type="password"
             value={values.password}/>
-            {errors.password}
           <br/><br/>
           <Button
-            type="submit"
             color="primary"
+            disabled={!!errors && (!!errors.password || !!errors.user)}
+            type="submit"
             variant="contained">
             {t('NavBar.login')}
           </Button>
