@@ -5,9 +5,22 @@ import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import App from './components/App';
 
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
+import reducers from './reducers';
+
+const store = createStore(
+  reducers,// All reducers
+  {},// Initial state
+  applyMiddleware(reduxThunk),
+);
+
 ReactDOM.render(
   <Suspense fallback="{<div>Loading</div>}">
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </Suspense>,
   document.getElementById('root')
 );

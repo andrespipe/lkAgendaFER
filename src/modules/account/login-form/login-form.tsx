@@ -19,7 +19,10 @@ interface Props {
 }
 
 const LoginForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
-  const { t, i18n } = useTranslation();
+  const {
+    t,
+    // i18n,
+  } = useTranslation();
 
   const validate = (values: Values) => {
     const errors: Errors = {};

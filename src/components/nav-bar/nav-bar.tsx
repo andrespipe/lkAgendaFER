@@ -52,7 +52,10 @@ const linkStyle = {
 
 const NavBar: React.FC = () => {
 
-  const { t, i18n } = useTranslation();
+  const {
+    t,
+    // i18n,
+  } = useTranslation();
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
